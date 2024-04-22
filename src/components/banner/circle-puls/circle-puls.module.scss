@@ -1,0 +1,54 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+.circle {
+  position: relative;
+
+  &__1,
+  &__2,
+  &__3 {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+
+    opacity: 1;
+
+    transform: translate(-50%, -50%);
+
+    @include mixins.square(30px);
+
+    border: 1px solid var.$color-main-bright;
+    border-radius: 50%;
+
+    animation: circlePulsation 2s linear infinite;
+  }
+}
+
+@keyframes circlePulsation {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translate(-50%, -50%) scale(3.4);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(5.5);
+    opacity: 0.2;
+  }
+
+  75% {
+    transform: translate(-50%, -50%) scale(5.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(5.5);
+    opacity: 0;
+  }
+}

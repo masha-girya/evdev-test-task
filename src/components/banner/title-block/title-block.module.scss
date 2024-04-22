@@ -1,0 +1,91 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+.titleBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+
+  margin-top: 12px;
+
+  @include mixins.mediaBigTablet {
+    gap: 50px;
+  }
+
+  @include mixins.mediaTablet {
+    margin-top: 10px;
+
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  &_subtitleBox {
+    align-items: flex-start;
+    gap: 154px;
+
+    @include mixins.mediaBigTablet {
+      gap: 70px;
+    }
+
+    @include mixins.mediaTablet {
+      flex-direction: column;
+      gap: 40px;
+
+      h2 {
+        width: max-content;
+      }
+    }
+  }
+
+  &__title {
+    @include mixins.titleText;
+    color: var.$color-text-dark;
+
+    white-space: nowrap;
+
+    @include mixins.mediaBigTablet {
+      width: min-content;
+      white-space: normal;
+    }
+
+    &_firstTitleMob {
+      @include mixins.mediaTablet {
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include mixins.buttonText;
+    color: var.$color-text-dark;
+
+    text-align: end;
+
+    margin-right: 21%;
+
+    @include mixins.mediaSmallDesktop {
+      margin-right: 12%;
+    }
+
+    @include mixins.mediaBigTablet {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      margin-right: 9%;
+    }
+
+    @include mixins.mediaTablet {
+      margin-right: 12px;
+    }
+  }
+
+  &__mainButton {
+    padding-top: 14px;
+
+    @include mixins.mediaTablet {
+      width: 100%;
+      padding-top: 0;
+    }
+  }
+}

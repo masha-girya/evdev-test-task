@@ -1,0 +1,76 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+.banner {
+  padding: calc(94px + 70px) var.$padding 0;
+
+  cursor: none;
+
+  button,
+  a {
+    cursor: none;
+  }
+
+  @include mixins.mediaTablet {
+    padding: 122px var.$padding 0;
+  }
+
+  &__linkBox {
+    display: flex;
+    justify-content: center;
+    gap: 47px;
+
+    span {
+      @include mixins.titleText;
+      letter-spacing: 0.01em;
+      color: var.$color-text-dark;
+    }
+
+    @include mixins.mediaBigTablet {
+      gap: 24px;
+    }
+
+    @include mixins.mediaTablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__imageBox {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    margin: 133px calc(120px - var.$padding) 0;
+
+    @include mixins.mediaTablet {
+      margin: 85px 0 0;
+    }
+
+    &__villaImg {
+      position: relative;
+      z-index: var.$z-index-back-elem;
+
+      width: 100%;
+      height: 140px;
+
+      img {
+        object-fit: cover;
+      }
+
+      @include mixins.mediaTablet {
+        height: 208px;
+      }
+    }
+
+    &__circleBox {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: 50%;
+      z-index: var.$z-index-front-elem;
+
+      transform: translate(0, -50%);
+    }
+  }
+}

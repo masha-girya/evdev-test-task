@@ -1,0 +1,60 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+$btnWidth: 180px;
+
+.magnetButton {
+  position: relative;
+  z-index: 3;
+
+  @include mixins.square($btnWidth);
+  min-width: $btnWidth;
+
+  @include mixins.buttonText;
+
+  border: 1px solid var.$color-text-light;
+  border-radius: 50%;
+
+  color: var.$color-text-light;
+
+  transition: color 0.2s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: var.$z-index-pseudo-hovers;
+
+    margin: auto;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var.$color-text-light;
+
+    border-radius: inherit;
+
+    transform: scale(0);
+
+    transition: transform 0.4s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+  }
+
+  p {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  @include mixins.hoverCursor {
+    &:hover {
+      color: var.$color-main-bright;
+
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}

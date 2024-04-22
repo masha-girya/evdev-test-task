@@ -1,0 +1,60 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+.burger {
+  position: relative;
+
+  display: none;
+
+  @include mixins.square(50px);
+
+  border-radius: 50%;
+  border: 1.5px solid var.$color-border;
+  background-color: transparent;
+
+  transition: background-color 0.3s ease;
+
+  @include mixins.mediaBigTablet {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &_open {
+    background-color: var.$color-text-dark;
+  }
+
+  &__1,
+  &__2,
+  &__3 {
+    height: 1px;
+    width: 17.5px;
+    border-radius: 20px;
+
+    background-color: var.$color-text-dark;
+
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  &__1 {
+    &_open {
+      transform: translate(-0.25px, 6px) rotate(-45deg);
+      background-color: var.$color-text-light;
+    }
+  }
+
+  &__3 {
+    &_open {
+      transform: translate(-0.25px, -6px) rotate(45deg);
+      background-color: var.$color-text-light;
+    }
+  }
+
+  &__2 {
+    &_open {
+      opacity: 0;
+    }
+  }
+}

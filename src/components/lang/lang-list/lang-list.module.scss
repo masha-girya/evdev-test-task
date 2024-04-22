@@ -1,0 +1,32 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-top: 27px;
+  padding: 5px;
+
+  min-width: max-content;
+  width: 100%;
+
+  background-color: var.$color-main-light;
+
+  @include mixins.mediaBigTablet {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  &__langItem {
+    @include mixins.navText;
+    @include mixins.navHover;
+
+    cursor: pointer;
+
+    &_active {
+      opacity: 40%;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+$btnWidth: 310px;
+$transition-duration: 0.3s;
+
+.mainButton {
+  @include mixins.buttonMain($btnWidth);
+
+  border: 2px solid var.$color-text-dark;
+  border-radius: 100px;
+
+  transition: border-color $transition-duration linear;
+
+  @include mixins.buttonMainAfter($btnWidth, $transition-duration) {
+    background-color: var.$color-main-bright;
+  }
+
+  @include mixins.mediaTablet {
+    width: 100%;
+  }
+
+  &__contentBox {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__text {
+    color: var.$color-text-dark;
+    @include mixins.buttonText;
+
+    transition: color $transition-duration linear;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+
+    svg {
+      transition: width $transition-duration linear;
+
+      path {
+        transition: all $transition-duration linear;
+        fill: #000;
+      }
+    }
+  }
+
+  @include mixins.hoverCursor {
+    &:hover {
+      border-color: var.$color-main-bright;
+
+      .mainButton__text {
+        color: var.$color-text-light;
+
+        &--ua {
+          transform: translateX(-2px);
+        }
+      }
+
+      .mainButton__icon {
+        svg {
+          width: 45px;
+
+          path {
+            stroke: var.$color-text-light;
+            d: path(
+              'M33 6.757L1 6.757M33 6.757L28.0781 1.79867M33 6.757L28.0781 11.7153'
+            );
+          }
+        }
+      }
+
+      &::after {
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

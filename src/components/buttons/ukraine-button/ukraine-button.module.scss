@@ -1,0 +1,106 @@
+@use '@/styles/_mixins.scss';
+@use '@/styles/_variables.scss' as var;
+
+$btnWidth: 293px;
+$transition-duration: 0.3s;
+$gap: 10px;
+
+.uaButton {
+  @include mixins.buttonMain($btnWidth);
+
+  background-color: transparent;
+
+  border: 2px solid transparent;
+  border-radius: 100px;
+
+  transition: border-color $transition-duration linear;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var.$z-index-pseudo-hovers;
+
+    background: linear-gradient(var.$color-main-light, var.$color-main-light)
+        padding-box,
+      linear-gradient(93.02deg, #0057b8 0%, #ffd700 97.41%) border-box;
+
+    border-radius: inherit;
+    border: 2px solid transparent;
+  }
+
+  @include mixins.buttonMainAfter($btnWidth, $transition-duration) {
+    background: linear-gradient(93.02deg, #0057b8 0%, #ffd700 97.41%);
+  }
+
+  @include mixins.mediaBigTablet {
+    width: 100px;
+    height: 98px;
+  }
+
+  &__contentBox {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: $gap;
+  }
+
+  &__text {
+    @include mixins.buttonText;
+
+    background: -webkit-linear-gradient(333deg, #0057b8 -15%, #ffd700 97.41%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    transform: translateX(-$gap);
+
+    transition: transform $transition-duration linear,
+      background $transition-duration linear;
+
+    @include mixins.mediaBigTablet {
+      display: none;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+
+    opacity: 0;
+
+    transition: opacity $transition-duration linear;
+
+    @include mixins.mediaBigTablet {
+      opacity: 1;
+    }
+  }
+
+  @include mixins.hoverCursor {
+    &:hover {
+      border-color: var.$color-text-light;
+
+      .uaButton__text {
+        background: -webkit-linear-gradient(
+          333deg,
+          var.$color-text-light -15%,
+          var.$color-text-light 97.41%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transform: translateX(-2px);
+      }
+
+      .uaButton__icon {
+        opacity: 1;
+      }
+
+      &::after {
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
